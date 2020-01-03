@@ -10,13 +10,25 @@ let numWrong = 0;
 
 /** Loop over the chars in `word` and create divs. */
 const createDivsForChars = (word) => {
-  // Replace this with your code
+  const wordContainer = document.querySelector("#word-container");
+  for (char of word){
+    let letterDiv = document.createElement('div');
+    letterDiv.classList.add("letter-box");
+    letterDiv.setAttribute('id', char)
+    wordContainer.append(letterDiv);
+  }
 };
 
 
 /** Loop over each letter in `ALPHABET` and generate buttons. */
 const generateLetterButtons = () => {
-  // Replace this with your code
+  const buttonContainer = document.querySelector("#letter-buttons");
+  for (letter of ALPHABET) {
+    let letterButton = document.createElement('button')
+    letterButton.classList.add("letter-buttons");
+    letterButton.innerHTML = letter;
+    buttonContainer.append(letterButton);
+  }
 };
 
 
@@ -25,19 +37,22 @@ const generateLetterButtons = () => {
  * `buttonEl` is an `HTMLElement` object.
  */
 const disableLetterButton = (buttonEl) => {
-  // Replace this with your code
+  buttonEl.attr('disabled', true)
 };
 
 
 /** Return `true` if `letter` is in the word. */
-const isLetterInWord = (letter) => {
-  // Replace this with your code
+const isLetterInWord = (word, letter) => {
+  return word.includes(letter);
 };
 
 
 /** Called when `letter` is in word. Update contents of divs with `letter`. */
 const handleCorrectGuess = (letter) => {
-  // Replace this with your code
+  const correct = document.querySelectorAll('#' + letter);
+  for (div of correct){
+    div.innerHTML = letter;
+  }
 };
 
 
@@ -47,7 +62,8 @@ const handleCorrectGuess = (letter) => {
  * message. Otherwise, increment `numWrong` and update the shark image.
  */
 const handleWrongGuess = () => {
-  // Replace this with your code
+  numWrong += 1
+  document.querySelector('img').setAttribute('src', `images/guess${numWrong}.png`)
 };
 
 
@@ -73,7 +89,7 @@ const resetGame = () => {
 
     const letter = clickedBtn.html();
 
-    if (isLetterInWord(letter)) {
+    if (isLetterInWord(word, letter)) {
       handleCorrectGuess(letter);
     } else {
       handleWrongGuess(letter);
