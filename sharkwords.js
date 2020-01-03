@@ -64,12 +64,20 @@ const handleCorrectGuess = (letter) => {
 const handleWrongGuess = () => {
   numWrong += 1
   document.querySelector('img').setAttribute('src', `images/guess${numWrong}.png`)
+  if (numWrong === 5){
+    $('.letter-buttons').attr('disabled', true);
+    $('#play-again').show();
+  }
 };
 
 
 /** Reset game state. Called before restarting the game. */
 const resetGame = () => {
-  // Replace this with your code
+  numWrong = 0
+  $('#word-container').empty();
+  $('#letter-buttons').empty();
+  $('#play-again').hide();
+  $('img').attr('src', 'images/guess0.png');
 };
 
 
