@@ -32,10 +32,7 @@ const generateLetterButtons = () => {
 };
 
 
-/** Set the `disabled` property of `buttonEl` to `true.
- *
- * `buttonEl` is an `HTMLElement` object.
- */
+/** Set the `disabled` property of `buttonEl` to `true. */
 const disableLetterButton = (buttonEl) => {
   buttonEl.attr('disabled', true)
 };
@@ -81,12 +78,9 @@ const resetGame = () => {
 };
 
 
-
-/** This is like if __name__ == '__main__' in Python */
-
 (function startGame() {
   // For now, we'll hardcode the word that the user has to guess.
-  const word = 'hello';
+  const word = WORDS[Math.floor(Math.random() * WORDS.length)];
 
   createDivsForChars(word);
   generateLetterButtons();
